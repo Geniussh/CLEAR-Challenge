@@ -1,7 +1,7 @@
 # CLEAR Challenge | Starter Kit
 
 ## Competition Overview
-![Continual LEArning on Real-World Imagery (CLEAR)](https://clear-benchmark.github.io/) is the first continual image classification benchmark dataset with a natural temporal evolution of visual concepts in the real world that spans a decade (2004-2014). This competition will be an opportunity for researchers and machine learning enthusiasts to experiment and explore state-of-the-art Continual Learning (CL) algorithms on this novel dataset. Submissions will also be evaluated with novel evaluation protocols that we have proposed for CL. 
+[Continual LEArning on Real-World Imagery (CLEAR)](https://clear-benchmark.github.io/) is the first continual image classification benchmark dataset with a natural temporal evolution of visual concepts in the real world that spans a decade (2004-2014). This competition will be an opportunity for researchers and machine learning enthusiasts to experiment and explore state-of-the-art Continual Learning (CL) algorithms on this novel dataset. Submissions will also be evaluated with novel evaluation protocols that we have proposed for CL. 
 
 ### Competition Stages
 The challenge consists of two stages:  
