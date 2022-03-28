@@ -58,7 +58,7 @@ Coming soon
 * Forward Transfer
   
 ### Training Time Constraint
-To prevent the participants from achieving high scores by training their models for weeks, the maximum time that participants should set when training locally should be within 
+To prevent the participants from achieving high scores by training their models for weeks, the maximum time that participants should set when training locally should be within 48 hours. We will verify the top 10 teams' training time after Stage 1. 
   
 ### Ranking Criteria
-In both stages, the submissions will be ranked on a weighted average of all of 
+In both stages, the submissions will be ranked on a weighted average of all of the 5 metrics above given the limited training time. 
