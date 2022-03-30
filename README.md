@@ -2,21 +2,21 @@
 # CLEAR Challenge | Starter Kit
 
 ## Competition Overview
-[Continual LEArning on Real-World Imagery (CLEAR)](https://clear-benchmark.github.io/) is the first continual image classification benchmark dataset with a natural temporal evolution of visual concepts in the real world that spans a decade (2004-2014). This competition will be an opportunity for researchers and machine learning enthusiasts to experiment and explore state-of-the-art Continual Learning (CL) algorithms on this novel dataset. In addition, submissions will be evaluated with our novel evaluation protocols that we have proposed for CL in the [paper](https://arxiv.org/abs/2201.06289). 
+[Continual LEArning on Real-World Imagery (CLEAR)](https://clear-benchmark.github.io/) is the first continual image classification benchmark dataset with a natural temporal evolution of visual concepts in the real world that spans a decade (2004-2014). This competition will be an opportunity for researchers and machine learning enthusiasts to experiment and explore state-of-the-art Continual Learning (CL) algorithms on this novel dataset. In addition, submissions will be evaluated with our novel streaming evaluation protocols that we have proposed in the [paper](https://arxiv.org/abs/2201.06289). 
 
 ### Competition Stages
 The challenge consists of two stages: 
 - **Stage 1**  
-Participants train their models locally using the public dataset following the streaming protocol, i.e. train today and test on tomorrow. Participants upload their models (10 models in total, each corresponding to a time bucket) along with their training script as one submission to AICrowd for evaluation against our private holdout set. The evaluation metrics will be the ones used for the streaming protocol, i.e. In-Domain Accuracy, Next-Domain Accuracy, Accuracy, Forward Transfer, Backward Transfer. Details about these metrics can be found in the paper. 
+Participants train their models locally using the public dataset consisting of 10 public trainsets following the streaming protocol, i.e. train today and test on tomorrow. Participants upload their models (10 in total, each is a model checkpoint train consecutively on the 10 trainsets) along with their training script as one submission to AICrowd for evaluation against our private hold-out testset. Each of the 10 models will be evaluated on the 10 hold-out testsets, obtaining an 10x10 accuracy matrix. The evaluation metrics are 4 different summarization of the accuracy matrix, i.e. In-Domain Accuracy (mean of diagonal), Next-Domain Accuracy (mean of superdiagonal), Forward Transfer (mean of upper triangular entries), Backward Transfer (mean of lower triangular entries). Details about these metrics can be found in the paper. We take a weighted average of the 4 metrics when determining the rankings in  the leaderboard.
 
 - **Stage 2**  
-The top 10 teams on the leaderboard in Stage 1 will be selected and required to provide a dockerized environment to train their models on our own servers. We will validate each team's models submitted to the leaderboard by training their models within the specified time limit, comparing the accuracy with the baselines, as well as checking if they have finetuned any pretrained network. Teams with invalid submissions will be marked on the leaderboard, and only teams with valid submissions will be eligible for the awards.
+The top 5 teams on the public leaderboard in Stage 1 will be asked to provide a dockerized environment to train their models on our own servers. We will validate each team's models submitted to the leaderboard by training their models within the specified time limit, comparing the accuracy with the baselines, as well as verifying that they did not use auxilary information to train the model (e.g., pre-trained network, additional labeled data, and etc.). Teams with invalid submissions will be removed from the leaderboard, and remaining top-3 teams with valid submissions will be eligible for the awards.
 
 ## Getting Started
 1. Download CLEAR either by ```get_data.sh``` in ```/data``` (TODO) or directly from the [website](https://clear-benchmark.github.io/).
 2. Fork this starting kit and start developing your contunual supervised learning algorithms.
-3. Follow the template in ```sample_code_submission``` as a reference to understand how to evaluate your models in the streaming protocol versus the traditional iid protocol. Note: the template finetunes the last classifier layer in a pretrained SqueezeNet, which is only for education purposes. Participants should never finetune a pretrained network as their submissions. But it is okay to use the performance of a pretrained SqueezeNet or ImageNet as an upper bound as they are trained on ImageNet.
-4. Submit the trained models (10 in total) to AICrowd for evaluation using our private holdout set. 
+3. Follow the template in ```sample_code_submission``` as a reference to understand how to evaluate your models in the streaming protocol versus the traditional iid protocol. Note: the template finetunes the last classifier layer in a pretrained SqueezeNet, which is only for education purposes. Participants should not finetune a pretrained network (i.e., ones downloaded from Internet) but can use meta-learning methods or etc. to find a good initialization (within the given time limit).
+4. Submit the trained models (10 in total) to AICrowd for evaluation using our private hold-out testsets and the results will be updated on the public leaderboard.
   
 A sample output of ```/sample_code_submission/main.py``` is shown as follows. Note: the iid protocol is kept in the sample only to serve as a comparison with the streaming protocol (in terms of different training and evaluation setup). Participants' submissions will only be evaluated in a streaming fashion. 
 
@@ -53,7 +53,6 @@ Coming soon
 ### Accuracy Matrix
 * In-Domain Accuracy
 * Next-Domain Accuracy
-* Accuracy
 * Backward Transfer
 * Forward Transfer
   
